@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <declare-styleable name="RTextView" parent="TextView">
+       <attr name="typeface" format="string" />
+       <attr name="placeholder" format="string" />
+   </declare-styleable>
+</resources>
