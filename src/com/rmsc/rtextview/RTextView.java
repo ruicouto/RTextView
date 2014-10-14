@@ -21,7 +21,7 @@ public class RTextView extends TextView {
 	private String mFontName;
 	private String mPlaceholder;
 	private Rect mTempBounds;
-	
+	private Typeface mTypeface;
 	/**
 	 * Default constructor.
 	 * @param context
@@ -59,10 +59,17 @@ public class RTextView extends TextView {
 	 */
 	private void init(Context context, AttributeSet attrs) {
 		mTempBounds = new Rect();
+		mTypeface = Typeface.DEFAULT;
 		if(attrs!=null) {
 			mStyledAttributes = context.getTheme().obtainStyledAttributes(attrs,R.styleable.RTextView,0, 0);
 			mFontName = mStyledAttributes.getString(R.styleable.RTextView_typeface);
 			mPlaceholder = mStyledAttributes.getString(R.styleable.RTextView_placeholder);
+			try {
+				mTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/"+mFontName+".ttf");	
+			} catch(Exception e) {
+				Log.e("RTextView", "Unable to load font '" + mFontName + ".ttf'.\nDo the file 'assets/fonts/"+mFontName+".ttf' exists?");
+			}
+			
 		}
 	}
 	
@@ -71,15 +78,8 @@ public class RTextView extends TextView {
 	 */
 	@Override
 	protected void onDraw(Canvas canvas) {
-		Typeface tf = Typeface.DEFAULT;
 		if(mFontName!=null && !mFontName.equals("")) {
-			if(!isInEditMode()) {
-				try {
-					tf = Typeface.createFromAsset(getContext().getAssets(), "fonts/"+mFontName+".ttf");
-				} catch(Exception e) {
-					Log.e("RTextView", "Unable to load font '" + mFontName + ".ttf'.\nDo the file 'assets/fonts/"+mFontName+".ttf' exists?");
-				}
-			} else {
+			if(isInEditMode()) {
 				if(mPlaceholder!=null && !mPlaceholder.equals("")) {
 					setText(mPlaceholder);
 				} else {
@@ -88,16 +88,16 @@ public class RTextView extends TextView {
 				}
 			}
 		}
-		setTypeface(tf);
+		setTypeface(mTypeface);
 		super.onDraw(canvas);
 	}
-	
+
 	/**
 	 * Adjust size for editing mode.
 	 */
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		if(!isInEditMode()) {
+		if(!isInEditMode() || mPlaceholder==null) {
 			super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 		} else {
 			getPaint().getTextBounds(mPlaceholder,0,mPlaceholder.length(),mTempBounds);
