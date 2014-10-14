@@ -3,5 +3,6 @@
    <declare-styleable name="RTextView" parent="TextView">
        <attr name="typeface" format="string" />
        <attr name="placeholder" format="string" />
+       <attr name="activecolor" format="color" />
    </declare-styleable>
 </resources>

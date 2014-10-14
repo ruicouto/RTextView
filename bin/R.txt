@@ -1,6 +1,8 @@
+int attr activecolor 0x7f010002
 int attr placeholder 0x7f010001
 int attr typeface 0x7f010000
 int dimen activity_horizontal_margin 0x7f020000
-int[] styleable RTextView { 0x7f010000, 0x7f010001 }
+int[] styleable RTextView { 0x7f010000, 0x7f010001, 0x7f010002 }
+int styleable RTextView_activecolor 2
 int styleable RTextView_placeholder 1
 int styleable RTextView_typeface 0

@@ -28,7 +28,24 @@ An example is as follows:
         android:textColor="#74FFB0"
         android:textSize="50sp"
         app:placeholder="+"
-        app:typeface="font" />
+        app:typeface="font"
+        app:activecolor="#69DF9C" />
+        
+##Available additional attributes
+You can use any textview attribute, plus the following ones:
+
+- "placeholder" for the text to be shown in the visual editor:
+
+		app:placeholder="+"
+		
+- "typeface" for the font file name (without extension):
+        
+        app:typeface="font"
+        
+- "activecolor" for the color to show when the text is being clicked:
+
+		app:activecolor="#69DF9C"  
+
         
 ##Events
 
@@ -45,3 +62,15 @@ As an extension of the TextView (therefore, View class), you can add events as i
 
 Check <http://http://fontello.com/> or <https://icomoon.io/> to get icons as a font.
 
+##FAQ
+- Why is the icon is not being displayed?
+
+	Either you are missing one of the attributes, or specified the font file erroneously.
+	
+- Why is the placeholder is not being displayed?
+
+	The placeholder will only be shown when all the required proprierties were set.
+	
+- There is a bug!
+
+	Probably. Please let me know.

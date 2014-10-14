@@ -9,6 +9,15 @@ package com.rmsc.rtextview;
 
 public final class R {
     public static final class attr {
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static int activecolor=0x7f010002;
         /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -42,15 +51,32 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #RTextView_activecolor com.rmsc.rtextview:activecolor}</code></td><td></td></tr>
            <tr><td><code>{@link #RTextView_placeholder com.rmsc.rtextview:placeholder}</code></td><td></td></tr>
            <tr><td><code>{@link #RTextView_typeface com.rmsc.rtextview:typeface}</code></td><td></td></tr>
            </table>
+           @see #RTextView_activecolor
            @see #RTextView_placeholder
            @see #RTextView_typeface
          */
         public static final int[] RTextView = {
-            0x7f010000, 0x7f010001
+            0x7f010000, 0x7f010001, 0x7f010002
         };
+        /**
+          <p>This symbol is the offset where the {@link com.rmsc.rtextview.R.attr#activecolor}
+          attribute's value can be found in the {@link #RTextView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.rmsc.rtextview:activecolor
+        */
+        public static final int RTextView_activecolor = 2;
         /**
           <p>This symbol is the offset where the {@link com.rmsc.rtextview.R.attr#placeholder}
           attribute's value can be found in the {@link #RTextView} array.

@@ -3,10 +3,12 @@ package com.rmsc.rtextview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.widget.TextView;
 
 /**
@@ -22,6 +24,10 @@ public class RTextView extends TextView {
 	private String mPlaceholder;
 	private Rect mTempBounds;
 	private Typeface mTypeface;
+	private int activeColor;
+	private int baseColor;
+	
+	
 	/**
 	 * Default constructor.
 	 * @param context
@@ -64,6 +70,14 @@ public class RTextView extends TextView {
 			mStyledAttributes = context.getTheme().obtainStyledAttributes(attrs,R.styleable.RTextView,0, 0);
 			mFontName = mStyledAttributes.getString(R.styleable.RTextView_typeface);
 			mPlaceholder = mStyledAttributes.getString(R.styleable.RTextView_placeholder);
+			String c = mStyledAttributes.getString(R.styleable.RTextView_activecolor);
+			if(c!=null) {
+				activeColor = Color.parseColor(c);
+			} else {
+				activeColor = -1;
+			}
+			baseColor = getCurrentTextColor();
+			
 			try {
 				mTypeface = Typeface.createFromAsset(getContext().getAssets(), "fonts/"+mFontName+".ttf");	
 			} catch(Exception e) {
@@ -71,6 +85,29 @@ public class RTextView extends TextView {
 			}
 			
 		}
+	}
+	
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		if(event.getAction() == MotionEvent.ACTION_DOWN) {
+			if(activeColor!=-1) {
+				setTextColor(activeColor);
+				invalidate();
+			}
+		}
+		if(event.getAction() == MotionEvent.ACTION_UP) {
+			if(activeColor!=-1) {
+				setTextColor(baseColor);
+				invalidate();
+			}
+			return performClick();
+		}
+		return super.onTouchEvent(event);
+	}
+	
+	@Override
+	public boolean performClick() {
+		return super.performClick();
 	}
 	
 	/**
